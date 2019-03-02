@@ -14,20 +14,20 @@ DROP USER IF EXISTS 'part1user'@'localhost';
 CREATE USER 'part1user'@'localhost' IDENTIFIED BY 'Test123!';
 
 /*F.5Grant all privileges on database*/
-GRANT ALL PRIVILEGES ON microwave_info.* TO 'part1user'@'localhost' IDENTIFIED BY 'Test123!';
+GRANT ALL PRIVILEGES ON microwave_info.* TO 'part1user'@'localhost';
 
 use microwave_info;
 
 create table file_info(
    fileID int NOT NULL AUTO_INCREMENT,
-   file_name varchar(255) NOT NULL,
+   file_name varchar(255) NOT NULL UNIQUE,
    PRIMARY KEY(fileID)
 );
 
 create table path_info(
    pathID int NOT NULL AUTO_INCREMENT,
    fileID int,
-   path_name varchar(100) NOT NULL,
+   path_name varchar(100) NOT NULL UNIQUE,
    path_length DECIMAL(4,1) NOT NULL,
    descrip varchar(255) NOT NULL,
    note text(65534), 
