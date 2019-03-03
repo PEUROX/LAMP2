@@ -423,7 +423,7 @@ function delete_wrong_file($db,$pk){
  
     ?>
 
-  <script src ="jquery-3.3.1.js"></script>
+  <script src ="js/jquery-3.3.1.js"></script>
       
       <?php
          $db = new mysqli('localhost','part1user','Test123!','microwave_info');
@@ -454,7 +454,7 @@ function delete_wrong_file($db,$pk){
        <div id = "points_info"></div> 
        <div id = "mid_info"></div> 
 <div id = "footer"><p id = "des">Microwave Communication System</p></div>
-      <script src ="ajax.js"></script>
+      <script src ="js/fetch_data_to_display.js"></script>
 
     
     </body>

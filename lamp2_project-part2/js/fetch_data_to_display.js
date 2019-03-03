@@ -4,17 +4,16 @@ $("#sel").change(function(){
     //alert(sPath);
     var data = $(this).serializeArray();
    
-    $.post('data.php',data,onSelect);
+    $.post("php_pages/data.php",data,onSelect);
 });
 
 function onSelect(resp){
-       console.log(resp.posts[0].path_name);
+       console.log(resp);
     var res = resp.posts;  
     var response = resp.posts.length;
     if(response > 0){
          
         $("#path_info").html("<h3>Path Info</h3><table id = 'path' border = 1><tr><th>path_name</th><th>path_length</th><th>description</th><th>note</th></tr>");
-        //$("#path").html("<tr><td>"+res[0].path_name+"</td><td>"+res[0].path_length +"</td><td>"+res[0].descrip+"</td><td>"+res[0].note+"</td></tr>");
         $("#points_info").html("<h3>End Point Info</h3><table id = 'points' border = 1><tr><th>Point 1</th><th>Point 2</th><th>Point 3</th></tr>");
         $("#mid_info").html("<h3>Main Data Info</h3><table id = 'mid' border = 1><tr><th>Distance</th><th>Gound Height</th><th>Terrain Type</th><th>Obstruction Height</th><th>Obstruction Type</th></tr>");
         
@@ -29,4 +28,4 @@ function onSelect(resp){
     }
 };
 
-$.get('data.php',onSelect);
+$.get("php_pages/data.php",onSelect);
