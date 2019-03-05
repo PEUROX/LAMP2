@@ -22,11 +22,14 @@
       
   $rs = $db->query($query1); 
       if($rs->num_rows > 0){
+
+
            $posts['posts'] = array();
          
          while($row = $rs->fetch_assoc()){
              array_push($posts['posts'],$row);
          }
+
           $post_data = json_encode($posts);
           echo $post_data;
       };

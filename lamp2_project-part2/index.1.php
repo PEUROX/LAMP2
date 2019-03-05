@@ -5,7 +5,9 @@
   <head>
     <title>Upload the CSV file</title>
 	<link href="css/main.css" type="text/css" rel="stylesheet" >
-	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
 
   <body> 
@@ -22,7 +24,7 @@
     <input type = "submit" name = "upload_file"  value = "Save CSV"/></br></br>
     </form>
    
-
+</html>
  <?php
 
 
@@ -192,7 +194,7 @@ if (($handle = fopen($uploaded_csv, "r")) !== FALSE) {
             {$error = "Wrong data type";echo $error;
               $success = 1;
               $db->query($query);
-              $db->rollbackdata();
+              $db->rollback();
       unlink($uploaded_csv);
               exit;};
             if (!is_string($csv_data[2])|| strlen($csv_data[2])>100 || !isset($csv_data[0]))
@@ -447,8 +449,6 @@ function delete_wrong_file($db,$pk){
         }else{
             echo $db->error;
         }
-
-        
           
       ?>
       
@@ -456,19 +456,10 @@ function delete_wrong_file($db,$pk){
        <div id = "points_info"></div> 
        <div id = "mid_info"></div> 
 <div id = "footer"><p id = "des">Microwave Communication System</p></div>
+      <script src ="js/fetch_data_to_display.js"></script>
 
-
-
-
-     
-<?php
-
-    include_once 'php_pages/edit_end_path.php';
-
-?>
+    
     </body>
-
-    </html>
 
 
   
