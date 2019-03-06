@@ -26,17 +26,27 @@
         </div>
         <div class="modal-body">
           <form id ='frm_end' action="">
-            <label>Path ID</label>
-            <input id="end_fileID" name="end_fileID" type="number" readonly><span></span><br>
-            
-            <label>End Distance</label>
-            <input id="end_distance" name="end_distance" type="number" readonly><span></span><br>
+          <table id="tbl_end" >
+          <tr><td><label>Path ID</label></td>
+            <td><input id="end_fileID" name="end_fileID" type="number" readonly></td>
+            <td><span></span></td>
+          </tr>
+          <tr><td><label>Distance</label></td>
+              <td><input id="end_distance" name="end_distance" type="number" readonly></td>
+              <td><span></span></td>
+          </tr>
 
-            <label>End Ground Height </label>
-            <input id="end_grd_ht" name="end_grd_ht" type="number" ><span></span><br>
+          <tr><td><label>Ground Height </label></td>
+            <td><input id="end_grd_ht" name="end_grd_ht" type="number" ></td>
+            <td><span></span></td>
+          </tr>
 
-            <label>End Antenna Height</label>
-            <input id="end_atn_ht" name="end_atn_ht" type="number"><span></span><br>
+          <tr><td><label>Antenna Height</label></td>
+            <td><input id="end_atn_ht" name="end_atn_ht" type="number"></td>
+            <td><span></span></td>
+          </tr>
+
+          </table>
           </form>
         </div>
         <div class="modal-footer">

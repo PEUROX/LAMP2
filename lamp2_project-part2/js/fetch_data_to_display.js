@@ -41,6 +41,7 @@ $.ajax({
                 fileID: id
             },
             success: function (data) {
+                console.log(data);
                 var res =JSON.parse(data);
 
                $("#end_fileID").val(res.fileID);
@@ -78,6 +79,15 @@ $('#edit_end').on('hidden.bs.modal', function () {
 
   location.reload();
 });
+
+$("td").css('text-align','left')
+       //.css('border', '1px solid');
+$("#tbl_end tr td:first-child").width(140);
+$('input[type=number]').width(70);
+$("#tbl_end tr td:nth-child(2)").width(70);
+
+
+
 
 
 $.get("php_pages/data.php",onSelect);
