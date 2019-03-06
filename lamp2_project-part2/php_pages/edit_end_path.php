@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,33 +23,42 @@
           <button type="button" class="close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">Edit End Path</h4>
         </div>
+       
         <div class="modal-body">
-          <form id ='frm_end' action="">
+
+          <form id ='frm_end' >
           <table id="tbl_end" >
-          <tr><td><label>Path ID</label></td>
+          <tr>
+            <td><label>Path ID</label></td>
             <td><input id="end_fileID" name="end_fileID" type="number" readonly></td>
-            <td><span></span></td>
-          </tr>
-          <tr><td><label>Distance</label></td>
-              <td><input id="end_distance" name="end_distance" type="number" readonly></td>
-              <td><span></span></td>
+            <td></td>
           </tr>
 
-          <tr><td><label>Ground Height </label></td>
+          <tr>
+            <td><label>Distance</label></td>
+            <td><input id="end_distance" name="end_distance" type="number" readonly></td>  
+            <td></td>
+          </tr>
+
+          <tr>
+            <td><label>Ground Height </label></td>
             <td><input id="end_grd_ht" name="end_grd_ht" type="number" ></td>
-            <td><span></span></td>
+            <td></td>
           </tr>
 
-          <tr><td><label>Antenna Height</label></td>
+          <tr>
+            <td><label>Antenna Height</label></td>
             <td><input id="end_atn_ht" name="end_atn_ht" type="number"></td>
-            <td><span></span></td>
+            <td></td>
           </tr>
 
           </table>
           </form>
+
+          <div id="err" style="color=red"></div>
         </div>
         <div class="modal-footer">
-          <button type="button" id="btn_sbmt" class="btn btn-default" data-dismiss="modal">Submit</button>
+          <button type="button" id="btn_sbmt" class="btn btn-default" >Submit</button>
           <button type="button" class="btn btn-default" data-dismiss="modal">Cancle</button>
         </div>
       </div>

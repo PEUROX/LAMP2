@@ -455,6 +455,7 @@ function delete_wrong_file($db,$pk){
        <div id = "path_info"></div> 
        <div id = "points_info"></div> 
        <div id = "mid_info"></div> 
+       
 <div id = "footer"><p id = "des">Microwave Communication System</p></div>
 
 

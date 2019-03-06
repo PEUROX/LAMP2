@@ -18,7 +18,7 @@ function onSelect(resp){
         $("#mid_info").html("<h3>Main Data Info</h3><table id = 'mid' border = 1><tr><th>Distance</th><th>Gound Height</th><th>Terrain Type</th><th>Obstruction Height</th><th>Obstruction Type</th><th>Edit</th></tr>");
         
             $("#path").append("<tr><td>"+res[0].path_name+"</td><td>"+res[0].path_length +"</td><td>"+res[0].descrip+"</td><td>"+res[0].note+"</tr>");
-            $("#points").append("<tr><td>"+res[0].end_distance +"</td><td>"+res[0].end_ground_height +"</td><td>"+res[0].end_antenna_height+"</td><td> <button  id='btn_end' class='btn btn-success' data-toggle='modal' data-target='#edit_end' onclick='sendID("+res[0].pointID+")' >Edit</button></td></tr>");
+            $("#points").append("<tr><td>"+res[0].point1 +"</td><td>"+res[0].point2 +"</td><td>"+res[0].point3+"</td><td> <button  id='btn_end' class='btn btn-success' data-toggle='modal' data-target='#edit_end' onclick='sendID("+res[0].pointID+")' >Edit</button></td></tr>");
     };
     
     var len=res.length;
@@ -45,10 +45,10 @@ $.ajax({
                 var res =JSON.parse(data);
 
                $("#end_fileID").val(res.fileID);
-               $("#end_distance").val(res.end_distance);
-               $("#end_grd_ht").val(res.end_ground_height);
-               $("#end_atn_ht").val(res.end_antenna_height);
-
+               $("#end_distance").val(res.point1);
+               $("#end_grd_ht").val(res.point2);
+               $("#end_atn_ht").val(res.point3);
+                
             },
             error: function () {
              alert('Error');
@@ -56,37 +56,71 @@ $.ajax({
         });
 }
 
-
 $("#btn_sbmt").click(function(e){
+    
     e.preventDefault();
     $.ajax({
         url: 'php_pages/update_end_tbl.php',
         type: 'post',
-        dataType: 'json',
+        //dataType: 'json',
         data: $('#frm_end').serialize(),
         success: function(data) {
-                   if(data==1){
-                       alert('End path info updated successfully!');
-                   }else{
-                       alert('failed to update end path!');
-                   }
-                 }
+            if (data !== '1'){
+    
+            $("#err").css('color', 'red')
+                     .html(data);
+            }else{
+
+                $("#err").css('color', 'green')
+                         .html('data saved successfully!');
+
+                $("#edit_end").delay(1000).hide(500, function(){
+                    location.reload();
+                });
+               }
+
+                $('#edit_end').on('hidden.bs.modal', function () {
+                    $("#err").html('');
+                });
+        }
     });
     
 })
 
-$('#edit_end').on('hidden.bs.modal', function () {
 
-  location.reload();
-});
 
-$("td").css('text-align','left')
-       //.css('border', '1px solid');
-$("#tbl_end tr td:first-child").width(140);
+// $("#btn_sbmt").click(function(e){
+//     e.preventDefault();
+//     $.ajax({
+//         url: 'php_pages/update_end_tbl.php',
+//         type: 'post',
+//         dataType: 'json',
+//         data: $('#frm_end').serialize(),
+//         success: function(data) {
+//                    if(data==1){
+//                        alert('End path info updated successfully!');
+//                    }else{
+//                        alert('failed to update end path!');
+//                    }
+//                  }
+//     });
+    
+// })
+
+// $('#edit_end').on('hidden.bs.modal', function () {
+
+//   location.reload();
+// });
+
+ $("#tbl_end tr td").css('text-align','left')
+//                     .css('border', '1px solid');
+       
+$("#tbl_end tr td:first-child").width(140).css('background-color','white');
 $('input[type=number]').width(70);
-$("#tbl_end tr td:nth-child(2)").width(70);
-
-
+$("#tbl_end tr td:nth-child(2)").width(80).css('text-align','center');
+$("#tbl_end tr td:nth-child(3)").css('background-color','white');
+$(".modal-body").offset({ top: 10, left: 70 });
+$("#err").offset({ top: 0, left: 90 });
 
 
 
