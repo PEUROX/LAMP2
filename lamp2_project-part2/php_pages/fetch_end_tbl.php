@@ -4,8 +4,8 @@ if(isset($_POST['fileID'])){
 }
 
 $servername = "localhost";
-$username = "haiyun";
-$password = "1234";
+$username = "part1user";
+$password = "Test123!";
 
 // Create connection
 $conn = new mysqli($servername, $username, $password, "microwave_info");
