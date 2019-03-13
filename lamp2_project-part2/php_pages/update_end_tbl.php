@@ -16,17 +16,26 @@ if(empty(trim($end_distance))){
 
     echo "distance is empty!";
     exit;
+}elseif(strlen(trim($end_distance)) > 5){
+    echo "point length is more than 5 characters!";
+    exit;
 }
 
 if(empty(trim($end_grd_ht))){
 
     echo "ground height is empty!";
     exit;
+}elseif(strlen(trim($end_grd_ht)) > 5){
+    echo "point length is more than 5 characters!";
+    exit;
 }
 
 if(empty(trim($end_atn_ht))){
 
     echo "antenna height is empty!";
+    exit;
+}elseif(strlen(trim($end_atn_ht)) > 5){
+    echo "point length is more than 5 characters!";
     exit;
 }
 
@@ -58,7 +67,7 @@ if(!is_numeric(trim($end_atn_ht))){
 $sql = "UPDATE end_point_info SET point2='$end_grd_ht',  point3 = '$end_atn_ht' WHERE pointID='$fileID'";
 
 if ($conn->query($sql) === TRUE) {
-    echo 1;
+    echo $fileID;
 } else {
     echo "failed to save data";
 }

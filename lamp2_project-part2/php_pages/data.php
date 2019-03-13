@@ -14,7 +14,8 @@
             echo "connection error";
             exit;                        
     }
-                                    
+    
+
   $query1 = "SELECT * FROM path_info t1 inner join end_point_info t2 on t1.fileID = t2.fileID
   inner join main_data_info t3 on t1.fileID = t3.fileID where t1.fileID ='".$_POST['sel']."';";
    // inner join begin_point_info t4 on t1.fileID = t4.fileID 

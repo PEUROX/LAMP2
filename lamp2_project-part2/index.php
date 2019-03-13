@@ -1,15 +1,26 @@
 <?php
   session_start();
+  
 ?>
 <html>
   <head>
     <title>Upload the CSV file</title>
 	<link href="css/main.css" type="text/css" rel="stylesheet" >
-	
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
   </head>
 
   <body> 
-    
+
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="index.php">Home</a></li>
+      <li><a href="edit_list.php">Path Details</a></li>
+    </ul>
+  </div>
+</nav>
+
     <div id="one">
     <h1>Click choose file to uplaod a CSV file</h1>
     <form method = "POST" enctype = "multipart/form-data">
@@ -115,11 +126,6 @@ if (is_uploaded_file($_FILES['the_file']['tmp_name'])){
 }
 
 
-echo "<p style = 'color:green'>Successfully uploaded the file</p></br>";
-
-
-
-
 $db = new mysqli('localhost','part1user','Test123!','microwave_info');
       
       
@@ -180,7 +186,7 @@ if (($handle = fopen($uploaded_csv, "r")) !== FALSE) {
                  
                           
             if (!is_string($csv_data[0])|| strlen($csv_data[0])>100 || !isset($csv_data[0])) 
-            {$error = "Wrong data type";echo $error;
+            {$error = "<p style = 'color:red;'>Wrong data type</p>";echo $error;
               $success = 1;
               //delete_wrong_file($db,$pk);
               
@@ -189,20 +195,20 @@ if (($handle = fopen($uploaded_csv, "r")) !== FALSE) {
               unlink($uploaded_csv);
               exit;};
             if (!is_string($csv_data[1])|| strlen($csv_data[1])>100 || !isset($csv_data[0])) 
-            {$error = "Wrong data type";echo $error;
+            {$error = "<p style = 'color:red;'>Wrong data type</p>";echo $error;
               $success = 1;
               $db->query($query);
               $db->rollbackdata();
       unlink($uploaded_csv);
               exit;};
             if (!is_string($csv_data[2])|| strlen($csv_data[2])>100 || !isset($csv_data[0]))
-             {$error = "Wrong data type";echo $error;
+             {$error = "<p style = 'color:red;'>Wrong data type</p>";echo $error;
               $success = 1;
               $db->query($query);
               $db->rollback();
       unlink($uploaded_csv);
               exit;};
-            if (!is_string($csv_data[3])|| strlen($csv_data[3])>100) {$error = "Wrong data type";echo $error;
+            if (!is_string($csv_data[3])|| strlen($csv_data[3])>100) {$error = "<p style = 'color:red;'>Wrong data type</p>";echo $error;
               $success = 1;
               $db->query($query);
               $db->rollback();
@@ -221,19 +227,19 @@ if (($handle = fopen($uploaded_csv, "r")) !== FALSE) {
 
         if($col_count == 3){
          
-          if(!is_numeric($csv_data[0])) {$error = "Wrong data type";echo $error;
+          if(!is_numeric($csv_data[0])) {$error = "<p style = 'color:red;'>Wrong data type</p>";echo $error;
             $success = 1;
             $db->query($query);
             $db->rollback();
       unlink($uploaded_csv);
             exit;};
-          if(!is_numeric($csv_data[1])) {$error = "Wrong data type";echo $error;
+          if(!is_numeric($csv_data[1])) {$error = "<p style = 'color:red;'>Wrong data type</p>";echo $error;
             $success = 1;
             $db->query($query);
             $db->rollback();
       unlink($uploaded_csv);
             exit;};
-          if(!is_numeric($csv_data[2])) {$error = "Wrong data type";echo $error;
+          if(!is_numeric($csv_data[2])) {$error = "<p style = 'color:red;'>Wrong data type</p>";echo $error;
             $success = 1;
             $db->query($query);
             $db->rollback();
@@ -244,7 +250,8 @@ if (($handle = fopen($uploaded_csv, "r")) !== FALSE) {
          
           
           $valid =  saveLinetoDB( $db ,$pk ,$row, $csv_data);
-          
+          echo "<p style = 'color:green'>Successfully uploaded the file</p></br>";
+
           if($valid == 1){
             $success = 1;
           }
@@ -252,31 +259,31 @@ if (($handle = fopen($uploaded_csv, "r")) !== FALSE) {
 
         if($col_count == 5){
          
-          if(!is_numeric($csv_data[0])){$error = "Wrong data type"; echo $error;
+          if(!is_numeric($csv_data[0])){$error = "<p style = 'color:red;'>Wrong data type</p>"; echo $error;
             $success = 1;
             $db->query($query);
             $db->rollback();
       unlink($uploaded_csv);
             exit;};
-          if(!is_numeric($csv_data[1])) {$error = "Wrong data type"; echo $error;
+          if(!is_numeric($csv_data[1])) {$error = "<p style = 'color:red;'>Wrong data type</p>"; echo $error;
             $success = 1;
             $db->query($query);
             $db->rollback();
       unlink($uploaded_csv);
             exit;};
-          if(!is_string($csv_data[2]) || strlen($csv_data[2]) > 100){$error = "Wrong data type"; echo $error;
+          if(!is_string($csv_data[2]) || strlen($csv_data[2]) > 100){$error = "<p style = 'color:red;'>Wrong data type</p>"; echo $error;
             $success = 1;
             $db->query($query);
             $db->rollback();
       unlink($uploaded_csv);
             exit;};
-          if(!is_numeric($csv_data[3])) {$error = "Wrong data type";echo $error;
+          if(!is_numeric($csv_data[3])) {$error = "<p style = 'color:red;'>Wrong data type</p>";echo $error;
             $success = 1;
             $db->query($query);
             $db->rollback();
       unlink($uploaded_csv);
             exit;};
-          if(!is_string($csv_data[4])) {$error = "Wrong data type";echo $error;
+          if(!is_string($csv_data[4])) {$error = "<p style = 'color:red;'>Wrong data type</p>";echo $error;
             $success = 1;
             $db->query($query);
             $db->rollback();
@@ -423,50 +430,7 @@ function delete_wrong_file($db,$pk){
  
     ?>
 
-  <script src ="js/jquery-3.3.1.js"></script>
-      
-      <?php
-         $db = new mysqli('localhost','part1user','Test123!','microwave_info');
-      
-         $query = "select * from path_info;";
-         
-        if($db->query($query)==true){
-           
-         $rs = $db->query($query);
-         if($rs->num_rows > 0){
-             $rowm=mysqli_fetch_all($rs,MYSQLI_ASSOC);
-             
-            echo "</div><select id='sel' name = 'sel'>";
-              echo "<option value = ''>Select a path</option>";
-             foreach($rowm as $row){
-                
-                echo "<option value = ".$row['fileID'].">".$row['path_name']."</option>";
-             }
-           echo  "</select>";
-         }
-        }else{
-            echo $db->error;
-        }
-
-        
-          
-      ?>
-      
-       <div id = "path_info"></div> 
-       <div id = "points_info"></div> 
-       <div id = "mid_info"></div> 
-       
-<div id = "footer"><p id = "des">Microwave Communication System</p></div>
-
-
-
-
-     
-<?php
-
-    include_once 'php_pages/edit_end_path.php';
-
-?>
+ 
     </body>
 
     </html>

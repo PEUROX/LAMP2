@@ -1,2 +1,0 @@
-I also added the bootstrap which is letter F I hope is ok.
-Plus, I saw some things on the code like multiple times we need to change evry single connection to db if we want to test , just a feedback let me knwo what you think?
